@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\TechnicalController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/user/login', [UserController::class, 'login']);
 Route::get('/user/profile', [UserController::class, 'getProfile'])->middleware(['auth:api-user', 'scopes:user']);
 Route::get('/user/logout', [UserController::class, 'logout'])->middleware(['auth:api-user', 'scopes:user']);
+
+Route::post('/technical/login', [TechnicalController::class, 'login']);
+Route::get('/technical/profile', [TechnicalController::class, 'getProfile'])->middleware(['auth:api-technical', 'scopes:technical']);
+Route::get('/technical/logout', [TechnicalController::class, 'logout'])->middleware(['auth:api-technical', 'scopes:technical']);
